@@ -2,7 +2,7 @@
 // Assumptions to confirm or replace:
 //  - site.url: GitHub Pages address until a custom domain is bought.
 //  - GitHub: dianame10.
-//  - LinkedIn path assumed to be /in/dianame-altalim.
+//  - LinkedIn: /in/dianame-altalim-b31862215/.
 //  - Degree years read as 2020 to 2022, Best Design Award as 2021 (the CV layout was ambiguous).
 //  - POS architecture (Electron tills, Node/Express + PostgreSQL server on the shop network)
 //    inferred from the CV's stack list.
@@ -43,7 +43,7 @@ export const site = {
   description:
     'Dianame Altalim is a full-stack engineer in Wellington: C# and .NET behind bank reconciliation at Xero, plus React products that real shops run on.',
   email: 'daltalim@gmail.com',
-  linkedin: 'https://www.linkedin.com/in/dianame-altalim',
+  linkedin: 'https://www.linkedin.com/in/dianame-altalim-b31862215/',
   github: 'https://github.com/dianame10', // e.g. 'https://github.com/<username>'. Empty = hidden.
   // YOUR PHOTO: put the file in public/images/ (e.g. public/images/portrait.jpg) and set src to
   // '/images/portrait.jpg'. A portrait (taller than wide) works best, about 1200 x 1500 px.
