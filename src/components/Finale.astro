@@ -1,13 +1,12 @@
 ---
-// The end of every page: sign-off, QR, the one call to action, end of roll.
+// The end of every page: sign-off, QR and the one call to action.
 import QRCode from 'qrcode';
 import { site, socials } from '../data/site';
 interface Props { thanks?: string; field?: string }
 const { thanks = 'Thanks for reading.', field = 'green' } = Astro.props;
 const qr = await QRCode.toString(`mailto:${site.email}`, { type: 'svg', margin: 0, color: { dark: '#000000', light: '#0000' } });
-const year = new Date().getFullYear();
 ---
-<section class={`field field--${field}`} aria-labelledby="finale-h">
+<section class={`field field--${field} finale-field`} aria-labelledby="finale-h">
   <div class="wrap grid finale">
     <h2 id="finale-h" class="finale__thanks display">{thanks}</h2>
     <figure class="finale__qr">
@@ -24,10 +23,3 @@ const year = new Date().getFullYear();
     </ul>
   </div>
 </section>
-<footer class="end-of-roll label">
-  <div class="wrap">
-    <span>End of roll · {year}</span>
-    <span>Set in Archivo · Built with Astro and GSAP</span>
-    <span>© {year} {site.name}</span>
-  </div>
-</footer>

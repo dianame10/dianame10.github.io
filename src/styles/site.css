@@ -204,9 +204,8 @@ section[tabindex='-1']:focus { outline: none; box-shadow: none; }
 .finale__links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; align-items: center; }
 .finale__links a { display: inline-flex; align-items: center; min-height: 2rem; }
 
-.end-of-roll { background: var(--ink); color: var(--white); }
-.end-of-roll .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem; padding-block: 1.25rem calc(var(--dock-h) + 1.75rem + env(safe-area-inset-bottom)); }
-.end-of-roll span:first-child { color: var(--mustard); }
+/* Last section on every page: keep its content clear of the fixed dock */
+.field.finale-field { padding-bottom: calc(var(--u) * 6 + var(--dock-h) + 1.75rem + env(safe-area-inset-bottom)); }
 
 /* ========== Dock (fixed printer at the bottom, the navigation) ========== */
 .printer { position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--z-header); pointer-events: none; }

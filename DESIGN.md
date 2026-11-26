@@ -162,3 +162,4 @@ Requested by Dianame, using ledboise.com as the reference for **type and colour 
 - Card link label is "See what I built" (was "Read the case").
 - New ultramarine "How I build" section (`approach` in `site.ts`): software anyone can understand.
 - POS marked "Still growing": still in active development.
+- Footer ("End of roll", colophon, copyright) removed at Dianame's request (27 Nov 2026); the last section now carries the dock clearance.
