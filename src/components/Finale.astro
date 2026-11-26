@@ -1,0 +1,33 @@
+---
+// The end of every page: sign-off, QR, the one call to action, end of roll.
+import QRCode from 'qrcode';
+import { site, socials } from '../data/site';
+interface Props { thanks?: string; field?: string }
+const { thanks = 'Thanks for reading.', field = 'green' } = Astro.props;
+const qr = await QRCode.toString(`mailto:${site.email}`, { type: 'svg', margin: 0, color: { dark: '#000000', light: '#0000' } });
+const year = new Date().getFullYear();
+---
+<section class={`field field--${field}`} aria-labelledby="finale-h">
+  <div class="wrap grid finale">
+    <h2 id="finale-h" class="finale__thanks display">{thanks}</h2>
+    <figure class="finale__qr">
+      <Fragment set:html={qr.replace('<svg', '<svg role="img" aria-label="QR code that opens an email to Dianame"')} />
+      <figcaption class="label">Scan to email</figcaption>
+    </figure>
+    <div class="finale__cta">
+      <a class="btn btn--big" href={`mailto:${site.email}`}>Email me <span class="btn__arrow" aria-hidden="true">→</span></a>
+      <span class="lead">{site.email}</span>
+    </div>
+    <ul class="finale__links label label--s">
+      {socials.map((s) => <li><a class="util" href={s.href} rel="me noopener" target="_blank">{s.label}<span class="sr-only"> (opens in a new tab)</span></a></li>)}
+      <li><a class="util" href="/about/">About</a></li>
+    </ul>
+  </div>
+</section>
+<footer class="end-of-roll label">
+  <div class="wrap">
+    <span>End of roll · {year}</span>
+    <span>Set in Archivo · Built with Astro and GSAP</span>
+    <span>© {year} {site.name}</span>
+  </div>
+</footer>

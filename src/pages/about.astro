@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Finale from '../components/Finale.astro';
+import Portrait from '../components/Portrait.astro';
+import { about, departments } from '../data/site';
+---
+<Base title="About" description="About Dianame Altalim: a .NET and React engineer at Xero in Wellington, with a BSc in Computer Science from the University of Canterbury.">
+  <header class="field field--cobalt about-hero">
+    <div class="wrap grid about-hero__grid">
+      <h1 class="display">A .NET engineer who likes the whole stack</h1>
+      <Portrait eager />
+      <p class="about-hero__lead statement">{about.intro}</p>
+    </div>
+  </header>
+
+  <div class="field field--mustard">
+    <div class="wrap grid story">
+      <section class="story__part" aria-labelledby="story-h">
+        <h2 id="story-h" class="story__label label">The longer version</h2>
+        <div class="story__body prose lead">{about.body.map((b) => <p>{b}</p>)}</div>
+      </section>
+      <section class="story__part" aria-labelledby="edu-h">
+        <h2 id="edu-h" class="story__label label">Education and awards</h2>
+        <ul class="story__body lines">
+          {about.education.map((e) => <li class="line"><span class="line__label">{e.label}</span><span class="line__dots" aria-hidden="true"></span><span class="line__value label label--s">{e.value}</span></li>)}
+        </ul>
+      </section>
+      <section class="story__part" aria-labelledby="vol-h">
+        <h2 id="vol-h" class="story__label label">Volunteering</h2>
+        <ul class="story__body craft craft--plain">{about.volunteering.map((v) => <li><span>{v}</span></li>)}</ul>
+      </section>
+    </div>
+  </div>
+
+  <section class="field field--ultra" aria-labelledby="dept-h">
+    <div class="wrap">
+      <h2 id="dept-h" class="section-title display">What I work with</h2>
+      <div class="depts">
+        {departments.map((d) => (
+          <div class="dept"><h3>{d.name}</h3><ul>{d.items.map((i) => <li>{i}</li>)}</ul></div>
+        ))}
+      </div>
+      <p class="label" style="margin-top: 2rem">Also: Cursor and Claude, every day</p>
+    </div>
+  </section>
+
+  <Finale thanks="Let’s talk." />
+</Base>

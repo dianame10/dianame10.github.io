@@ -1,0 +1,21 @@
+---
+// The dock: fixed at the bottom of the screen, pages feed out of it. It is the nav.
+import { site } from '../data/site';
+const path = Astro.url.pathname;
+const isHome = path === '/';
+const isWork = path.startsWith('/work');
+const isAbout = path.startsWith('/about');
+---
+<header class="printer">
+  <div class="printer__body">
+    <a class="printer__home" href="/" aria-current={isHome ? 'page' : undefined} data-title={site.name}>
+      <span class="printer__mark" aria-hidden="true">DA</span>
+      <span class="feedroll label"><span>{site.name}</span><span aria-hidden="true">Home</span></span>
+    </a>
+    <nav class="printer__keys" aria-label="Main">
+      <a class="key" data-title="Work" href="/#work" aria-current={isWork ? 'page' : undefined}><span class="key__led" aria-hidden="true"></span><span class="feedroll"><span>Work</span><span aria-hidden="true">Work</span></span></a>
+      <a class="key" data-title="About" href="/about/" aria-current={isAbout ? 'page' : undefined}><span class="key__led" aria-hidden="true"></span><span class="feedroll"><span>About</span><span aria-hidden="true">About</span></span></a>
+      <a class="key key--cta" href={`mailto:${site.email}`}><span class="feedroll"><span>Email</span><span aria-hidden="true">Email</span></span></a>
+    </nav>
+  </div>
+</header>

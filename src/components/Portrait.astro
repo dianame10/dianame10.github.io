@@ -1,0 +1,15 @@
+---
+// Your photo. Set site.portrait.src in src/data/site.ts; until then a DA monogram fills the frame.
+import { site } from '../data/site';
+interface Props { eager?: boolean; sizes?: string }
+const { eager = false } = Astro.props;
+const { src, alt } = site.portrait;
+---
+<div class="portrait-wrap">
+  <span class="portrait__tab" aria-hidden="true"></span>
+  <figure class="portrait">
+    {src
+      ? <img src={src} alt={alt} width="672" height="840" loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding="async" />
+      : <span class="portrait__mark display" aria-hidden="true">DA</span>}
+  </figure>
+</div>

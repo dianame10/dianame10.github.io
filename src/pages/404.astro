@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { projects } from '../data/site';
+---
+<Base title="Item not on file" description="This address doesn’t match anything on Dianame Altalim’s site. Head back to the first page or pick one of the projects below.">
+  <section class="field field--tomato nf">
+    <span class="nf__ghost display outline" aria-hidden="true">Void</span>
+    <div class="wrap">
+      <p class="label">Scan error</p>
+      <h1><span class="nf__code display" style="display:block">404</span><span class="statement" style="display:block; margin-top: 1rem">Item not on file</span></h1>
+      <p class="lead" style="margin-top: 1rem; max-width: 34rem">That address scanned, but nothing in the catalogue matches it. Try one of these instead.</p>
+      <div class="nf__links">
+        <a class="btn" href="/" data-title="Home">Back to the start <span class="btn__arrow" aria-hidden="true">→</span></a>
+        {projects.map((p) => <a class="btn btn--mustard" href={`/work/${p.slug}/`} data-title={p.short}>{p.short} <span class="btn__arrow" aria-hidden="true">→</span></a>)}
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,123 @@
+---
+import Base from '../../layouts/Base.astro';
+import Finale from '../../components/Finale.astro';
+import { projects, site, xero } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((p, i) => ({ params: { slug: p.slug }, props: { p, i } }));
+}
+const { p, i } = Astro.props as { p: (typeof projects)[number]; i: number };
+const next = projects[(i + 1) % projects.length];
+const demo = p.demo;
+const embed = (() => {
+  if (!demo?.src) return '';
+  const yt = demo.src.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{6,})/);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`;
+  const vm = demo.src.match(/vimeo\.com\/(\d+)/);
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}`;
+  return '';
+})();
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: p.title,
+  abstract: p.summary,
+  creator: { '@type': 'Person', name: site.name },
+  url: new URL(`/work/${p.slug}/`, site.url).href,
+};
+---
+<Base title={p.title} description={p.description} jsonLd={ld}>
+  <header class={`field field--${p.colour} case-hero`}>
+    <div class="wrap">
+      <p class="case-hero__top label"><span>Project 0{i + 1} of 0{projects.length}</span><span>{p.tag}</span></p>
+      <h1 class="display">{p.title}</h1>
+      <div class="grid case-hero__body">
+        <p class="case-hero__summary statement">{p.summary}</p>
+        <ul class="case-hero__meta lines">
+          {p.meta.map((m) => (
+            <li class="line"><span class="line__label label">{m.label}</span><span class="line__value">{m.value}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  {p.figure.kind === 'facts' && (
+    <figure class="field field--ink" aria-label="The system in numbers">
+      <ul class="wrap facts">
+        {p.figure.facts.map((f) => <li><span class="fact__value display">{f.value}</span><span class="fact__label">{f.label}</span></li>)}
+      </ul>
+    </figure>
+  )}
+  {p.figure.kind === 'timeline' && (
+    <figure class="field field--ink timeline-fig">
+      <div class="wrap">
+        <figcaption class="label" style="margin-bottom: 1.25rem">Roles at Xero</figcaption>
+        <ol class="lines">
+          {xero.roles.map((r) => <li class="line"><span class="line__label">{r.label}</span><span class="line__dots" aria-hidden="true"></span><span class="line__value label label--s">{r.value}</span></li>)}
+        </ol>
+      </div>
+    </figure>
+  )}
+
+  {demo && (
+    <section class="field field--tomato demo" aria-labelledby="demo-h">
+      <div class="wrap grid">
+        <div class="demo__head">
+          <p class="label">Demo</p>
+          <h2 id="demo-h" class="display demo__title">See it running</h2>
+          <p class="demo__caption">{demo.caption}</p>
+        </div>
+        <div class="demo__frame">
+          {embed ? (
+            <iframe src={embed} title={`Demo video: ${p.short}`} loading="lazy" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>
+          ) : demo.src ? (
+            <video controls preload={demo.poster ? 'none' : 'metadata'} playsinline poster={demo.poster || undefined} aria-label={`Demo video: ${p.short}`}>
+              <source src={demo.src} type="video/mp4" />
+            </video>
+          ) : (
+            <div class="demo__soon">
+              <span class="demo__play" aria-hidden="true"></span>
+              <span class="label">Demo video coming soon</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="field field--cobalt">
+    <div class="wrap grid story">
+      <section class="story__part" aria-labelledby="ctx-h">
+        <h2 id="ctx-h" class="story__label label">The problem</h2>
+        <div class="story__body"><p class="lead">{p.context}</p></div>
+      </section>
+      <section class="story__part" aria-labelledby="idea-h">
+        <h2 id="idea-h" class="story__label label">The idea</h2>
+        <div class="story__body"><p class="lead">{p.idea}</p></div>
+      </section>
+      <section class="story__part" aria-labelledby="craft-h">
+        <h2 id="craft-h" class="story__label label">What went into it</h2>
+        <ol class="story__body craft">{p.craft.map((c) => <li><span>{c}</span></li>)}</ol>
+      </section>
+      <section class="story__part" aria-labelledby="out-h">
+        <h2 id="out-h" class="story__label label">Outcome</h2>
+        <div class="story__body"><p class="statement">{p.outcome}</p></div>
+      </section>
+    </div>
+  </div>
+
+  <nav class={`field field--${next.colour} next`} aria-label="Next project">
+    <div class="wrap">
+      <a class="next__card" href={`/work/${next.slug}/`} data-title={next.short}>
+        <span>
+          <span class="label">Next project</span>
+          <span class="next__title display" style="display:block">{next.short}</span>
+        </span>
+        <span class="btn" aria-hidden="true">Open <span class="btn__arrow">→</span></span>
+      </a>
+    </div>
+  </nav>
+
+  <Finale thanks="Want the full story? Ask me." field="pink" />
+</Base>
