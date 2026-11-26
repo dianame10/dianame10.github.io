@@ -96,12 +96,12 @@ export const departments = [
 
 export const about = {
   intro:
-    'C#, .NET and SQL on one side, React and TypeScript on the other. I care about software that holds up when the stakes are ordinary and real, like a shop’s takings or a firm’s month-end.',
+    'I work across the whole stack: C#, .NET and SQL on the back end, React and TypeScript on the front. I care most about software people rely on every day, like a shop’s daily sales.',
   body: [
-    'I started at Xero as an intern, then came back as a graduate and rotated through three teams: Reporting, Security and Engineering Practice. In Security I handled incident response and the compliance documentation behind it. I settled on the Bank Reconciliation team, where I’m now an intermediate engineer. I work on services and APIs, ship front-end features, take my turn on call, and review teammates’ code every day.',
+    'I started at Xero as an intern, then came back as a graduate and rotated through three teams: Reporting, Security and Engineering Practice. In Security I handled incident response and the compliance documentation behind it. I settled on the Bank Reconciliation team, where I’m now an intermediate engineer. I work on services and APIs, ship front-end features, and review teammates’ code every day.',
     'Outside work I design and build products end to end. The biggest is a point-of-sale and inventory system that runs my family’s retail store in Indonesia. I also built the invitation and check-in app for a 400-guest wedding and ran it live on the day.',
     'Whatever I build, I want the people using it to understand it without needing me in the room. If a system makes someone’s day harder, it isn’t done yet.',
-    'I’m happiest on a team that actually talks to each other. I build with Cursor and Claude day to day and go to their workshops to keep getting better at it.',
+    'I’m happiest on a team that actually talks to each other.',
   ],
   education: [
     { label: 'BSc Computer Science, University of Canterbury', value: '2020 to 2022' },
@@ -213,7 +213,7 @@ export const projects: Project[] = [
     summary:
       'C# services, APIs and front-end features behind bank reconciliation, used every day by small businesses and the accountants who look after them.',
     description:
-      'Dianame Altalim’s work on Xero’s Bank Reconciliation team: C# and .NET services, Client Readiness, Reconcile Period, on call and team health metrics.',
+      'Dianame Altalim’s work on Xero’s Bank Reconciliation team: C# and .NET services, Client Readiness, Reconcile Period and team health metrics.',
     meta: [
       { label: 'Team', value: 'Bank Reconciliation' },
       { label: 'Role', value: 'Intermediate engineer' },
@@ -230,7 +230,7 @@ export const projects: Project[] = [
       'Client Readiness (in progress): a single-page view that scores an organisation’s banking, bookkeeping and tax health as percentages, next to figures like unreconciled statement lines, so accounting partners see which clients need attention first.',
       'Reconcile Period: front-end and back-end work on letting a business close off a period once it is reconciled. Now live for customers in the United States.',
       'Operational health metrics: co-led the release with a senior engineer, giving the team an accurate read on how our systems perform.',
-      'On call for live incidents, investigating and resolving them quickly to limit customer impact. Earlier, on my graduate rotation in Security: incident response and the compliance documentation behind it.',
+      'Earlier, on my graduate rotation in Security: incident response and the compliance documentation behind it.',
       'Daily code review, design discussions, and open feedback through the team’s 360 process.',
     ],
     outcome:
